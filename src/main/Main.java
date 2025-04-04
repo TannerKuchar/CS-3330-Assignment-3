@@ -32,13 +32,11 @@ public class Main {
 			
 			// bad guy by Billie Eilish
 			// Parsing through the CSV file
-			List<MidiEventData> midiEvents = MidiCsvParser.parseCsvFile("src/csv/parser/mystery_song.csv");
+			List<MidiEventData> midiEvents = MidiCsvParser.parseCsv("src/csv/parser/mystery_song.csv");
 			
 			// Initializing a sequence
 			Sequence sequence = new Sequence(Sequence.PPQ, 384);
 			Track track = sequence.createTrack();
-			
-			System.out.println("Got to line 35");
 			
 			// Creating the abstract factory
 			MidiEventFactoryAbstract factoryAbstract = new LegatoMidiEventFactoryAbstract();
@@ -52,7 +50,6 @@ public class Main {
 			
 			// After parsing through the CSV file, convert the MidiEventData classes into MidiEvents. 
 			for (MidiEventData event: midiEvents) { // For each event in midi events
-				System.out.println("Adding " + event.toString());
 				if (event.getNoteOnOff() == 1) { // If the note is turning on
 					track.add(factory.createNoteOn(event.getStartEndTick(), event.getNote(), event.getVelocity(), event.getChannel()));
 				} else {

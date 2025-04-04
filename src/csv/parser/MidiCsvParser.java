@@ -11,7 +11,7 @@ import midi.data.MidiEventData;
 
 public class MidiCsvParser {
 	
-	public static List<MidiEventData> parseCsvFile(String filepath) {
+	public static List<MidiEventData> parseCsv(String filepath) {
 		
 		// Initialize array to store each event in
 		List<MidiEventData> events = new ArrayList();
