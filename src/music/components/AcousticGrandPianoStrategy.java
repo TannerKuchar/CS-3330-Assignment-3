@@ -3,7 +3,11 @@ package music.components;
 import javax.sound.midi.*;
 
 public class AcousticGrandPianoStrategy implements InstrumentStrategy {
-
+	/**
+	 * This method changes the instrument of a given track & channel to an acoustic grand piano.
+	 * @param track
+	 * @param channel
+	 */
 	@Override
 	public void applyInstrument(Track track, int channel)  {
 		try {

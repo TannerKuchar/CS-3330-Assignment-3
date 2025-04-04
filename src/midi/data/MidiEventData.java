@@ -4,6 +4,16 @@ public class MidiEventData {
 	private int startEndTick, velocity, note, channel, noteOnOff;
 	private int instrument;
 	
+	/**
+	 * Main constructor for MidiEventData. This class is used by the CSV parser and for
+	 * users to easily create their own MIDI event.
+	 * @param startEndTick
+	 * @param velocity
+	 * @param note
+	 * @param channel
+	 * @param instrument
+	 * @param noteOnOff
+	 */
 	public MidiEventData(int startEndTick, int velocity, int note, int channel, int instrument, int noteOnOff) {
 		this.startEndTick = startEndTick;
 		this.velocity = velocity;
@@ -13,6 +23,11 @@ public class MidiEventData {
 		this.noteOnOff = noteOnOff;
 	}
 	
+	
+	/**
+	 * This method is used to convert information about this object into String form.
+	 * Primarily used for troubleshooting.
+	 */
 	public String toString() {
 		return "MIDI_EVENT_DATE: [tick = " + this.startEndTick + "] [velocity = " + this.velocity + "] [note = " + this.note + "] [channel = " + this.channel + "] [instrument = " + this.instrument + "] [onOff = " + noteOnOff + "]";
 	}

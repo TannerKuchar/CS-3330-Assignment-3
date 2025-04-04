@@ -4,6 +4,11 @@ import javax.sound.midi.*;
 
 public class TrumpetStrategy implements InstrumentStrategy {
 
+	/**
+	 * This method changes the instrument of a given track & channel to a trumpet.
+	 * @param track
+	 * @param channel
+	 */
 	@Override
 	public void applyInstrument(Track track, int channel)  {
 		try {

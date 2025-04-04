@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import csv.parser.MidiCsvParser;
 
 import javax.sound.midi.MidiSystem;
+
 /* Import Javax Sound Utilities */
 import javax.sound.midi.Sequence;
 import javax.sound.midi.Sequencer;
@@ -22,7 +23,9 @@ import midi.factory.MidiEventFactoryAbstract;
 import midi.factory.StandardMidiEventFactoryAbstract;
 import music.components.*;
 
-
+/**
+ * Main script for the program. Parsing Billie Eilish CSV for testing.
+ */
 public class Main {
 
 	public static void main(String[] args) {
@@ -45,8 +48,8 @@ public class Main {
 			MidiEventFactory factory = factoryAbstract.createFactory();
 			
 			// Implementing an instrument strategy
-			InstrumentStrategy instrumentStrategy = new ElectricBassGuitarStrategy();
-			instrumentStrategy.applyInstrument(track, 1);
+			InstrumentStrategy instrumentStrategy = new TrumpetStrategy();
+			instrumentStrategy.applyInstrument(track, 0);
 			
 			// After parsing through the CSV file, convert the MidiEventData classes into MidiEvents. 
 			for (MidiEventData event: midiEvents) { // For each event in midi events
@@ -62,6 +65,7 @@ public class Main {
 			sequencer.setSequence(sequence);
 			sequencer.start();
 			
+			// Close the sequencer when complete
 			while (sequencer.isRunning() | sequencer.isOpen()) {
 				Thread.sleep(500);
 			}
