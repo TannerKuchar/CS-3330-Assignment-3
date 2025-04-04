@@ -6,7 +6,7 @@ public class StandardMidiEventFactoryAbstract implements MidiEventFactoryAbstrac
 	public MidiEventFactory createFactory() {
 		MidiEventFactoryAbstract factoryAbstract = null;
 		factoryAbstract = new StandardMidiEventFactoryAbstract();
-		MidiEventFactory factory = factoryAbstract.createFactory();
+		MidiEventFactory factory = new StandardMidiEventFactory();
 		return factory;
 	}
 
