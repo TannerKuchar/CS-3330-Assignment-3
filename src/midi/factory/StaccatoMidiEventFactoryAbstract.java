@@ -4,9 +4,7 @@ public class StaccatoMidiEventFactoryAbstract implements MidiEventFactoryAbstrac
 
 	@Override
 	public MidiEventFactory createFactory() {
-		MidiEventFactoryAbstract factoryAbstract = null;
-		factoryAbstract = new StaccatoMidiEventFactoryAbstract();
-		MidiEventFactory factory = factoryAbstract.createFactory();
+		MidiEventFactory factory = new StaccatoMidiEventFactory();
 		return factory;
 	}
 

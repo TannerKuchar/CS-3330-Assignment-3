@@ -4,8 +4,6 @@ public class StandardMidiEventFactoryAbstract implements MidiEventFactoryAbstrac
 
 	@Override
 	public MidiEventFactory createFactory() {
-		MidiEventFactoryAbstract factoryAbstract = null;
-		factoryAbstract = new StandardMidiEventFactoryAbstract();
 		MidiEventFactory factory = new StandardMidiEventFactory();
 		return factory;
 	}

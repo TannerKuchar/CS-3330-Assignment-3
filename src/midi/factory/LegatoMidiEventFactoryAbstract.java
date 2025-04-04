@@ -4,9 +4,7 @@ public class LegatoMidiEventFactoryAbstract implements MidiEventFactoryAbstract 
 
 	@Override
 	public MidiEventFactory createFactory() {
-		MidiEventFactoryAbstract factoryAbstract = null;
-		factoryAbstract = new LegatoMidiEventFactoryAbstract();
-		MidiEventFactory factory = factoryAbstract.createFactory();
+		MidiEventFactory factory = new LegatoMidiEventFactory();
 		return factory;
 	}
 

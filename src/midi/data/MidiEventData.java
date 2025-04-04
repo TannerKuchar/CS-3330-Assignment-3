@@ -13,6 +13,10 @@ public class MidiEventData {
 		this.noteOnOff = noteOnOff;
 	}
 	
+	public String toString() {
+		return "MIDI_EVENT_DATE: [tick = " + this.startEndTick + "] [velocity = " + this.velocity + "] [note = " + this.note + "] [channel = " + this.channel + "] [instrument = " + this.instrument + "] [onOff = " + noteOnOff + "]";
+	}
+	
 	/* Generated getters & setters */
 
 	public int getStartEndTick() {

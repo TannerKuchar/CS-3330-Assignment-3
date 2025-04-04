@@ -16,6 +16,7 @@ import javax.sound.midi.Track;
 
 /* Import MIDI Utilities */
 import midi.data.*;
+import midi.factory.*;
 import midi.factory.MidiEventFactory;
 import midi.factory.MidiEventFactoryAbstract;
 import midi.factory.StandardMidiEventFactoryAbstract;
@@ -28,46 +29,42 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		try {
+			
+			// bad guy by Billie Eilish
+			// Parsing through the CSV file
 			List<MidiEventData> midiEvents = MidiCsvParser.parseCsvFile("src/csv/parser/mystery_song.csv");
+			
+			// Initializing a sequence
 			Sequence sequence = new Sequence(Sequence.PPQ, 384);
 			Track track = sequence.createTrack();
 			
 			System.out.println("Got to line 35");
 			
-			MidiEventFactoryAbstract factoryAbstract = new StandardMidiEventFactoryAbstract();
+			// Creating the abstract factory
+			MidiEventFactoryAbstract factoryAbstract = new LegatoMidiEventFactoryAbstract();
 			
+			// Creating the factory to build MidiEvents from
 			MidiEventFactory factory = factoryAbstract.createFactory();
 			
+			// Implementing an instrument strategy
 			InstrumentStrategy instrumentStrategy = new ElectricBassGuitarStrategy();
-			instrumentStrategy.applyInstrument(track, 0);
+			instrumentStrategy.applyInstrument(track, 1);
 			
-			instrumentStrategy = new TrumpetStrategy();
-			instrumentStrategy.applyInstrument(track,  1);
-			
-			System.out.println("Got to line 47");
-			
-			PitchStrategy pitchStrategy = new HigherPitchStrategy();
-			
+			// After parsing through the CSV file, convert the MidiEventData classes into MidiEvents. 
 			for (MidiEventData event: midiEvents) { // For each event in midi events
-				System.out.println("Adding midi event data");
-				int modifiedNote = pitchStrategy.modifyPitch(event.getNote());
-				modifiedNote = pitchStrategy.modifyPitch(modifiedNote);
-				
-				if (event.getNoteOnOff() == ShortMessage.NOTE_ON) {
-					track.add(factory.createNoteOn(event.getStartEndTick(), modifiedNote, event.getVelocity(), event.getChannel()));
+				System.out.println("Adding " + event.toString());
+				if (event.getNoteOnOff() == 1) { // If the note is turning on
+					track.add(factory.createNoteOn(event.getStartEndTick(), event.getNote(), event.getVelocity(), event.getChannel()));
 				} else {
-					track.add(factory.createNoteOff(event.getStartEndTick(), modifiedNote, event.getChannel()));
+					track.add(factory.createNoteOff(event.getStartEndTick(), event.getNote(), event.getChannel()));
 				}
 			}
-			
-			System.out.println("Completed adding midi events");
 			
 			Sequencer sequencer = MidiSystem.getSequencer();
 			sequencer.open();
 			sequencer.setSequence(sequence);
 			sequencer.start();
 			
-			System.out.println("Sequencer has started");
 			while (sequencer.isRunning() | sequencer.isOpen()) {
 				Thread.sleep(500);
 			}
